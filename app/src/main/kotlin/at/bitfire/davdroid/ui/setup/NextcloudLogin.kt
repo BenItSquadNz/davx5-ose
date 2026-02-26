@@ -27,6 +27,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -69,7 +70,8 @@ object NextcloudLogin : LoginType {
     override fun LoginScreen(
         snackbarHostState: SnackbarHostState,
         initialLoginInfo: LoginInfo,
-        onLogin: (LoginInfo) -> Unit
+        onLogin: (LoginInfo) -> Unit,
+        onSwitchLoginType: () -> Unit
     ) {
         val model: NextcloudLoginModel = hiltViewModel(
             creationCallback = { factory: NextcloudLoginModel.Factory ->
@@ -127,7 +129,8 @@ object NextcloudLogin : LoginType {
             canContinue = uiState.canContinue,
             inProgress = uiState.inProgress,
             error = uiState.error,
-            onLogin = { model.startLoginFlow() }
+            onLogin = { model.startLoginFlow() },
+            onSwitchLoginType = onSwitchLoginType
         )
     }
 
@@ -140,7 +143,8 @@ fun NextcloudLoginScreen(
     canContinue: Boolean,
     inProgress: Boolean,
     error: String? = null,
-    onLogin: () -> Unit = {}
+    onLogin: () -> Unit = {},
+    onSwitchLoginType: () -> Unit = {}
 ) {
     Assistant(
         nextLabel = stringResource(R.string.login_login),
@@ -215,6 +219,12 @@ fun NextcloudLoginScreen(
                             )
                         }
                     }
+                TextButton(
+                    onClick = onSwitchLoginType,
+                    modifier = Modifier.padding(top = 12.dp)
+                ) {
+                    Text(text = "Use a different login method")
+                }
             }
         }
     }

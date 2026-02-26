@@ -20,6 +20,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -51,7 +52,8 @@ object EmailLogin : LoginType {
     override fun LoginScreen(
         snackbarHostState: SnackbarHostState,
         initialLoginInfo: LoginInfo,
-        onLogin: (LoginInfo) -> Unit
+        onLogin: (LoginInfo) -> Unit,
+        onSwitchLoginType: () -> Unit
     ) {
         val model: EmailLoginModel = hiltViewModel(
             creationCallback = { factory: EmailLoginModel.Factory ->
@@ -65,7 +67,8 @@ object EmailLogin : LoginType {
             onSetEmail = model::setEmail,
             password = uiState.password,
             canContinue = uiState.canContinue,
-            onLogin = { onLogin(uiState.asLoginInfo()) }
+            onLogin = { onLogin(uiState.asLoginInfo()) },
+            onSwitchLoginType = onSwitchLoginType
         )
     }
 
@@ -78,7 +81,8 @@ fun EmailLoginScreen(
     onSetEmail: (String) -> Unit = {},
     password: TextFieldState,
     canContinue: Boolean,
-    onLogin: () -> Unit = {}
+    onLogin: () -> Unit = {},
+    onSwitchLoginType: () -> Unit = {}
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -142,6 +146,13 @@ fun EmailLoginScreen(
                 },
                 modifier = Modifier.fillMaxWidth()
             )
+
+            TextButton(
+                onClick = onSwitchLoginType,
+                modifier = Modifier.padding(top = 12.dp)
+            ) {
+                Text(text = "Use a different login method")
+            }
         }
     }
 

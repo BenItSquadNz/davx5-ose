@@ -5,6 +5,7 @@
 package at.bitfire.davdroid.ui
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -41,7 +42,10 @@ class AccountsActivity: AppCompatActivity() {
                 },
                 accountsDrawerHandler = accountsDrawerHandler,
                 onAddAccount = {
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    val intent = Intent(this, LoginActivity::class.java)
+                    // start directly in URL login (skip the type selector)
+                    intent.data = Uri.parse("https://")
+                    startActivity(intent)
                 },
                 onShowAccount = { account ->
                     val intent = Intent(this, AccountActivity::class.java)

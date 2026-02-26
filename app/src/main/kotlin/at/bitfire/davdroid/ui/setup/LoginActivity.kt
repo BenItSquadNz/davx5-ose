@@ -88,6 +88,21 @@ class LoginActivity @Inject constructor(): AppCompatActivity() {
 
             // extract URI or email and optionally username/password from Intent data
             val logger = Logger.getGlobal()
+            // First, try to read common query parameters from the Android Uri (if present).
+            // This allows provisioning links like:
+            // https://example.com/provision?url=https%3A%2F%2Fdav.example.com%2F&username=john&password=secret
+            intent.data?.let { androidUri ->
+                try {
+                    androidUri.getQueryParameter("username")?.let { givenUsername = it }
+                    androidUri.getQueryParameter("user")?.let { if (givenUsername == null) givenUsername = it }
+                    androidUri.getQueryParameter("password")?.let { givenPassword = it }
+                    androidUri.getQueryParameter("pass")?.let { if (givenPassword == null) givenPassword = it }
+                    androidUri.getQueryParameter("url")?.let { if (givenUri == null) givenUri = it }
+                } catch (_: Exception) {
+                    // ignore
+                }
+            }
+
             intent.data?.normalizeScheme()?.let { uri ->
                 val realScheme = when (uri.scheme) {
                     // replace caldav[s]:// and carddav[s]:// with http[s]://
@@ -103,7 +118,7 @@ class LoginActivity @Inject constructor(): AppCompatActivity() {
 
                 when (realScheme) {
                     "http", "https" -> {
-                        // extract user info
+                        // extract user info from authority (user:pass@host)
                         uri.userInfo?.split(':')?.let { userInfo ->
                             givenUsername = userInfo.getOrNull(0)
                             givenPassword = userInfo.getOrNull(1)

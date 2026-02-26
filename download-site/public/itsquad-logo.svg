@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 113" width="360" height="113" role="img" aria-labelledby="title desc">
+  <title id="title">ITsquad logo</title>
+  <desc id="desc">ITsquad logo with dark blue background, cyan IT mark, and green SQUAD wordmark.</desc>
+
+  <!-- full background bar -->
+  <rect x="0" y="0" width="360" height="113" fill="#2f5577"/>
+
+  <!-- outlined speech-bubble mark -->
+  <path d="M45 18 H106 V74 H78 L74 84 L68 74 H45 Z"
+        fill="none"
+        stroke="#25a9e0"
+        stroke-width="5"
+        stroke-linejoin="miter"/>
+
+  <!-- IT glyph built as geometry to preserve angles -->
+  <path d="M56 30 H66 V63 H56 Z" fill="#25a9e0"/>
+  <path d="M71 30 H98 V38 H89 V63 H80 V38 H71 Z" fill="#25a9e0"/>
+
+  <!-- wordmark -->
+  <text x="116" y="67"
+        fill="#8dc63f"
+        font-size="58"
+        font-weight="700"
+        font-family="Montserrat, 'Arial Black', 'Segoe UI', sans-serif"
+        letter-spacing="0.3">SQUAD</text>
+</svg>

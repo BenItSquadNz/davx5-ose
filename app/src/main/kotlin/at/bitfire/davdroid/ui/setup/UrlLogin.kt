@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -51,7 +52,8 @@ object UrlLogin : LoginType {
     override fun LoginScreen(
         snackbarHostState: SnackbarHostState,
         initialLoginInfo: LoginInfo,
-        onLogin: (LoginInfo) -> Unit
+        onLogin: (LoginInfo) -> Unit,
+        onSwitchLoginType: () -> Unit
     ) {
         val model: UrlLoginModel = hiltViewModel(
             creationCallback = { factory: UrlLoginModel.Factory ->
@@ -70,7 +72,8 @@ object UrlLogin : LoginType {
             onLogin = {
                 if (uiState.canContinue)
                     onLogin(uiState.asLoginInfo())
-            }
+            },
+            onSwitchLoginType = onSwitchLoginType
         )
     }
 
@@ -84,7 +87,8 @@ fun UrlLoginScreen(
     onSetUsername: (String) -> Unit = {},
     password: TextFieldState,
     canContinue: Boolean,
-    onLogin: () -> Unit = {}
+    onLogin: () -> Unit = {},
+    onSwitchLoginType: () -> Unit = {}
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -164,6 +168,14 @@ fun UrlLoginScreen(
                 },
                 modifier = Modifier.fillMaxWidth()
             )
+
+            // Allow switching to other login methods directly from this screen
+            TextButton(
+                onClick = onSwitchLoginType,
+                modifier = Modifier.padding(top = 12.dp)
+            ) {
+                Text(text = "Use a different login method")
+            }
         }
     }
 

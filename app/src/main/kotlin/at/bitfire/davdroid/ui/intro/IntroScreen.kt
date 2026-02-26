@@ -71,22 +71,23 @@ fun IntroScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(M3ColorScheme.primaryLight)
+                    .background(M3ColorScheme.tertiaryLight)   // navy bottom bar
                     // consume bottom and side insets of safe drawing area, like BottomAppBar
                     .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
-                    .height(90.dp)
+                    .height(72.dp)
             ) {
                 PositionIndicator(
                     index = pagerState.currentPage,
                     max = pages.size,
                     modifier = Modifier
                         .fillMaxHeight()
-                        .padding(horizontal = 128.dp)
+                        .padding(horizontal = 32.dp)
                         .align(Alignment.Center)
                         .fillMaxWidth(),
-                    selectedIndicatorColor = MaterialTheme.colorScheme.onPrimary,
-                    unselectedIndicatorColor = MaterialTheme.colorScheme.tertiary,
-                    indicatorSize = 15f
+                    selectedIndicatorColor = M3ColorScheme.secondaryLight,  // green dot
+                    unselectedIndicatorColor = Color(0xFF5A8AAF),           // muted light navy
+                    indicatorSize = 6f,
+                    indicatorPadding = 14f
                 )
 
                 ButtonWithIcon(
@@ -99,7 +100,9 @@ fun IntroScreen(
                     modifier = Modifier
                         .padding(end = 16.dp)
                         .align(Alignment.CenterEnd),
-                    color = M3ColorScheme.tertiaryLight
+                    size = 48.dp,
+                    color = M3ColorScheme.secondaryLight,      // green button
+                    contentColor = Color.White
                 ) {
                     if (pagerState.currentPage + 1 == pagerState.pageCount) {
                         onDonePressed()

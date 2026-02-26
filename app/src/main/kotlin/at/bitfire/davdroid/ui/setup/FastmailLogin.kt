@@ -23,6 +23,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -59,7 +60,8 @@ object FastmailLogin : LoginType {
     override fun LoginScreen(
         snackbarHostState: SnackbarHostState,
         initialLoginInfo: LoginInfo,
-        onLogin: (LoginInfo) -> Unit
+        onLogin: (LoginInfo) -> Unit,
+        onSwitchLoginType: () -> Unit
     ) {
         val model: FastmailLoginModel = hiltViewModel(
             creationCallback = { factory: FastmailLoginModel.Factory ->
@@ -103,7 +105,8 @@ object FastmailLogin : LoginType {
                         model.signInFailed()
                     }
                 }
-            }
+            },
+            onSwitchLoginType = onSwitchLoginType
         )
     }
 }
@@ -113,7 +116,8 @@ fun FastmailLoginScreen(
     email: String,
     onSetEmail: (String) -> Unit = {},
     canContinue: Boolean,
-    onLogin: () -> Unit = {}
+    onLogin: () -> Unit = {},
+    onSwitchLoginType: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
@@ -161,6 +165,12 @@ fun FastmailLoginScreen(
                 .wrapContentSize()
         ) {
             Text(stringResource(R.string.login_fastmail_sign_in))
+        }
+        TextButton(
+            onClick = onSwitchLoginType,
+            modifier = Modifier.padding(top = 12.dp)
+        ) {
+            Text(text = "Use a different login method")
         }
     }
 }

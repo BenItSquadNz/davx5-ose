@@ -19,7 +19,8 @@ interface LoginType {
     fun LoginScreen(
         snackbarHostState: SnackbarHostState,
         initialLoginInfo: LoginInfo,
-        onLogin: (LoginInfo) -> Unit
+        onLogin: (LoginInfo) -> Unit,
+        onSwitchLoginType: () -> Unit = {}
     )
 
 }

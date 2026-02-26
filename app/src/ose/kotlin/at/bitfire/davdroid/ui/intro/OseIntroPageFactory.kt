@@ -7,20 +7,14 @@ package at.bitfire.davdroid.ui.intro
 import javax.inject.Inject
 
 class OseIntroPageFactory @Inject constructor(
-    backupsPage: BackupsPage,
     batteryOptimizationsPage: BatteryOptimizationsPage,
-    openSourcePage: OpenSourcePage,
-    permissionsIntroPage: PermissionsIntroPage,
-    tasksIntroPage: TasksIntroPage
+    permissionsIntroPage: PermissionsIntroPage
 ): IntroPageFactory {
 
     override val introPages = arrayOf(
         WelcomePage(),
-        tasksIntroPage,
         permissionsIntroPage,
-        batteryOptimizationsPage,
-        backupsPage,
-        openSourcePage
+        batteryOptimizationsPage
     )
 
 }

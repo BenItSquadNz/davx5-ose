@@ -133,6 +133,9 @@
                 <data android:scheme="carddav"/>
                 <data android:scheme="carddavs"/>
                 <data android:scheme="davx5"/>
+                <!-- Accept generic HTTP/HTTPS links for provisioning pages (any host) -->
+                <data android:scheme="http" />
+                <data android:scheme="https" />
             </intent-filter>
             <intent-filter>
                 <action android:name="loginFlow" /> <!-- Ensures this filter matches, even if the sending app is not defining an action -->

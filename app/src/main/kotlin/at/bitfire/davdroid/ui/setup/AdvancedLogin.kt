@@ -23,6 +23,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -55,7 +56,8 @@ object AdvancedLogin : LoginType {
     override fun LoginScreen(
         snackbarHostState: SnackbarHostState,
         initialLoginInfo: LoginInfo,
-        onLogin: (LoginInfo) -> Unit
+        onLogin: (LoginInfo) -> Unit,
+        onSwitchLoginType: () -> Unit
     ) {
         val model: AdvancedLoginModel = hiltViewModel(
             creationCallback = { factory: AdvancedLoginModel.Factory ->
@@ -93,7 +95,8 @@ fun AdvancedLoginScreen(
     certAlias: String,
     onSetCertAlias: (String) -> Unit = {},
     canContinue: Boolean,
-    onLogin: () -> Unit = {}
+    onLogin: () -> Unit = {},
+    onSwitchLoginType: () -> Unit = {}
 ) {
     val focusRequester = remember { FocusRequester() }
 
@@ -178,6 +181,12 @@ fun AdvancedLoginScreen(
                 chosenAlias = certAlias,
                 onAliasChosen = onSetCertAlias
             )
+            TextButton(
+                onClick = onSwitchLoginType,
+                modifier = Modifier.padding(top = 12.dp)
+            ) {
+                Text(text = "Use a different login method")
+            }
         }
     }
 

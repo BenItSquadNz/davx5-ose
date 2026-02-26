@@ -36,36 +36,10 @@ open class OseAccountsDrawerHandler @Inject constructor(): AccountsDrawerHandler
         // Most important entries
         ImportantEntries(snackbarHostState)
 
-        // News
-        MenuHeading(R.string.navigation_drawer_news_updates)
-        MenuEntry(
-            icon = painterResource(R.drawable.mastodon),
-            title = Social.fediverseHandle,
-            onClick = {
-                uriHandler.openUri(Social.fediverseUrl.toString())
-            }
-        )
-
         // Tools
         Tools()
 
-        // Support the project
-        MenuHeading(R.string.navigation_drawer_support_project)
-        Contribute(onContribute = {
-            uriHandler.openUri(
-                Homepage.baseUrl.buildUpon()
-                    .appendPath(Homepage.PATH_OPEN_SOURCE)
-                    .withStatParams(javaClass.simpleName)
-                    .build().toString()
-            )
-        })
-        MenuEntry(
-            icon = Icons.Default.Forum,
-            title = stringResource(R.string.navigation_drawer_community),
-            onClick = {
-                uriHandler.openUri(Social.discussionsUrl.toString())
-            }
-        )
+        // (Contribute and Community links removed from top-level menu per branding request)
 
 
         // External links

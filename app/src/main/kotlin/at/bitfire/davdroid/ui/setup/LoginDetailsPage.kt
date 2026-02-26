@@ -20,6 +20,7 @@ fun LoginDetailsPage(
         onLogin = { loginInfo ->
             model.updateLoginInfo(loginInfo)
             model.navToNextPage()
-        }
+        },
+        onSwitchLoginType = { model.navBack() }
     )
 }

@@ -1,0 +1,163 @@
+/* ── ITsquad Download Page ── */
+/* Brand colors extracted from ITsquad logo SVG */
+
+:root {
+  /* ── Brand palette (from logo) ── */
+  --navy:           #2f5577;  /* dark blue — backgrounds, depth */
+  --navy-dark:      #1e3a52;  /* deeper navy — body bg gradient */
+  --navy-light:     #3d6a8f;  /* lighter navy — hover states, borders */
+  --cyan:           #25a9e0;  /* primary — links, highlights, IT mark */
+  --cyan-hover:     #1e91c4;  /* slightly darker cyan for hover */
+  --green:          #8dc63f;  /* accent — CTA buttons, SQUAD wordmark */
+  --green-hover:    #79b032;  /* darker green for hover */
+  --green-on:       #0d2200;  /* dark text on green (WCAG AA) */
+
+  /* ── Surfaces ── */
+  --bg:             #1a2d40;  /* deep dark navy background */
+  --card-bg:        #ffffff;  /* white cards for contrast */
+  --card-border:    rgba(37,169,224,0.15);
+
+  /* ── Text ── */
+  --text:           #1a1a1a;  /* near-black for card text */
+  --text-light:     #f0f4f8;  /* light text on dark backgrounds */
+  --text-muted:     #8fa8c0;  /* muted text for footer / captions */
+  --text-heading:   #25a9e0;  /* cyan headings on dark bg */
+
+  --radius:         12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(165deg, var(--navy-dark) 0%, var(--navy) 100%);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 540px;
+  width: 100%;
+}
+
+/* ── Header ── */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.25rem 0 1.5rem 0;
+}
+header .logo {
+  margin-bottom: .75rem;
+}
+header .logo img {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
+header h1 {
+  font-size: 1.75rem;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+header h1 span {
+  color: var(--cyan);
+}
+header .tagline {
+  color: var(--text-muted);
+  font-size: .95rem;
+  margin-top: .35rem;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+  border-left: 4px solid var(--green);
+  color: var(--text);
+}
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: .75rem;
+  color: var(--navy);
+}
+.card p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #3a3a3a;
+}
+
+/* ── CTA Button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--green);
+  color: var(--green-on);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: .85rem 2rem;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, transform .1s ease, box-shadow .15s ease;
+  box-shadow: 0 2px 8px rgba(141,198,63,0.3);
+}
+.btn:hover {
+  background: var(--green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(141,198,63,0.4);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(141,198,63,0.3);
+}
+
+/* ── Instructions list ── */
+.instructions ol {
+  padding-left: 1.25rem;
+  line-height: 1.8;
+  color: #3a3a3a;
+}
+.instructions li::marker {
+  color: var(--cyan);
+  font-weight: 700;
+}
+.instructions code {
+  background: #e8f4fd;
+  color: var(--navy);
+  padding: .15em .4em;
+  border-radius: 4px;
+  font-size: .9em;
+}
+.instructions em {
+  color: #555;
+}
+
+/* ── Accent utilities ── */
+.tag-accent  { color: var(--green); font-weight: 600; }
+.card .icon  { color: var(--green); }
+.link-accent { color: var(--cyan); font-weight: 600; }
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .8rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  header h1 { font-size: 1.4rem; }
+  .card { padding: 1.25rem; }
+  .btn { width: 100%; justify-content: center; }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITsquad Sync – Download</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <!-- Link header to official ITsquad site (was pointing to DAVx5 previously) -->
+      <a href="https://itsquad.nz/" class="header-link" target="_blank" rel="noopener noreferrer" aria-label="ITsquad homepage">
+        <div class="logo">
+          <svg viewBox="0 0 140 48" width="140" height="56" fill="none" aria-hidden="true">
+            <!-- square mark -->
+            <rect x="0" y="0" width="48" height="48" rx="8" fill="#234a6b"/>
+            <text x="24" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff" font-family="sans-serif">IT</text>
+            <!-- wordmark: SQUAD in green -->
+            <text x="66" y="32" text-anchor="start" font-size="20" font-weight="700" fill="#7cb342" font-family="sans-serif">SQUAD</text>
+          </svg>
+        </div>
+        <h1>ITsquad Sync</h1>
+      </a>
+      <p class="tagline">CardDAV &amp; CalDAV sync for your organisation</p>
+    </header>
+
+    <!-- Hero card -->
+    <section class="card">
+      <h2>Download the App</h2>
+      <p>
+        Install <strong>ITsquad Sync</strong> on your Android device to keep
+        contacts and calendars in sync with your company server.
+      </p>
+
+      <a href="/download" class="btn" id="downloadBtn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 20h14v-2H5v2zm7-18v12.17l3.59-3.58L17 12l-5 5-5-5 1.41-1.41L12 14.17V2z"/>
+        </svg>
+        Download APK
+      </a>
+
+      <p class="note" id="noApkNote" style="display:none; color:#d71717;">
+        ⚠️ No APK file is available yet. Ask your admin to place the APK on the server.
+      </p>
+    </section>
+
+    <!-- Instructions -->
+    <section class="card instructions">
+      <h2>Installation Instructions</h2>
+      <ol>
+        <li>Tap <strong>Download APK</strong> above.</li>
+        <li>
+          If prompted, allow your browser to install unknown apps:<br/>
+          <em>Settings → Apps → [Your Browser] → Install unknown apps → Allow</em>
+        </li>
+        <li>Open the downloaded <code>.apk</code> file and tap <strong>Install</strong>.</li>
+        <li>Open the app – your admin may send you a provisioning link that pre-fills the server details automatically.</li>
+      </ol>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 ITsquad &mdash; Internal use only</p>
+    </footer>
+  </div>
+
+  <script>
+    // Quick client-side check: hit /health to verify the server is up
+    fetch('/health')
+      .then(r => r.json())
+      .then(d => console.log('Server health:', d))
+      .catch(() => {
+        document.getElementById('noApkNote').style.display = 'block';
+      });
+  </script>
+</body>
+</html>

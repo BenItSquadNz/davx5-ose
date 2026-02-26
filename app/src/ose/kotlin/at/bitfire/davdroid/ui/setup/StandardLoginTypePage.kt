@@ -4,15 +4,25 @@
 
 package at.bitfire.davdroid.ui.setup
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -35,6 +45,8 @@ fun StandardLoginTypePage(
     
     onContinue: () -> Unit = {}
 ) {
+    var showMoreOptions by remember { mutableStateOf(false) }
+
     Assistant(
         nextLabel = stringResource(R.string.login_continue),
         nextEnabled = true,
@@ -46,24 +58,53 @@ fun StandardLoginTypePage(
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(vertical = 8.dp)
             )
-            for (type in StandardLoginTypesProvider.genericLoginTypes)
-                LoginTypeSelector(
-                    title = stringResource(type.title),
-                    selected = type == selectedLoginType,
-                    onSelect = { onSelectLoginType(type) }
-                )
 
-            Text(
-                stringResource(R.string.login_provider_login),
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
+            // Show URL login prominently — it's the primary login method
+            LoginTypeSelector(
+                title = stringResource(UrlLogin.title),
+                selected = UrlLogin == selectedLoginType,
+                onSelect = { onSelectLoginType(UrlLogin) }
             )
-            for (type in StandardLoginTypesProvider.specificLoginTypes)
-                LoginTypeSelector(
-                    title = stringResource(type.title),
-                    selected = type == selectedLoginType,
-                    onSelect = { onSelectLoginType(type) }
+
+            // Collapsible section for other login types
+            TextButton(
+                onClick = { showMoreOptions = !showMoreOptions },
+                modifier = Modifier.padding(top = 8.dp)
+            ) {
+                Icon(
+                    imageVector = if (showMoreOptions) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = 4.dp)
                 )
+                Text(
+                    text = if (showMoreOptions) "Less options" else "More options",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+
+            AnimatedVisibility(visible = showMoreOptions) {
+                Column {
+                    // Other generic login types (Email, Advanced)
+                    for (type in StandardLoginTypesProvider.genericLoginTypes.drop(1))
+                        LoginTypeSelector(
+                            title = stringResource(type.title),
+                            selected = type == selectedLoginType,
+                            onSelect = { onSelectLoginType(type) }
+                        )
+
+                    Text(
+                        stringResource(R.string.login_provider_login),
+                        style = MaterialTheme.typography.headlineSmall,
+                        modifier = Modifier.padding(top = 16.dp, bottom = 8.dp)
+                    )
+                    for (type in StandardLoginTypesProvider.specificLoginTypes)
+                        LoginTypeSelector(
+                            title = stringResource(type.title),
+                            selected = type == selectedLoginType,
+                            onSelect = { onSelectLoginType(type) }
+                        )
+                }
+            }
 
             HorizontalDivider(Modifier.padding(vertical = 12.dp))
 
