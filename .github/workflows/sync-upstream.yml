@@ -1,0 +1,74 @@
+name: Sync from upstream DAVx5
+
+on:
+  schedule:
+    # Runs on the 1st of every month at 08:00 UTC
+    - cron: '0 8 1 * *'
+  workflow_dispatch: # also allows manual trigger from the Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main-ose
+
+      - name: Add upstream remote
+        run: git remote add upstream https://gitlab.com/bitfireAT/davx5-ose.git
+
+      - name: Fetch upstream
+        run: git fetch upstream
+
+      - name: Check for new upstream commits
+        id: check
+        run: |
+          BEHIND=$(git rev-list --count HEAD..upstream/main-ose)
+          echo "behind=$BEHIND" >> "$GITHUB_OUTPUT"
+          echo "Upstream is $BEHIND commits ahead of your fork."
+
+      - name: Create sync branch
+        if: steps.check.outputs.behind != '0'
+        run: |
+          BRANCH="upstream-sync/$(date +'%Y-%m')"
+          git checkout -b "$BRANCH"
+          git merge upstream/main-ose --no-edit --allow-unrelated-histories || true
+          git push origin "$BRANCH"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Open pull request
+        if: steps.check.outputs.behind != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BEHIND=${{ steps.check.outputs.behind }}
+          gh pr create \
+            --base main-ose \
+            --head "$BRANCH" \
+            --title "chore: sync $BEHIND upstream commits from DAVx5 ($(date +'%B %Y'))" \
+            --body "$(cat <<'EOF'
+          ## Upstream sync
+
+          This PR was automatically created by the monthly upstream sync workflow.
+
+          **Upstream repo:** https://gitlab.com/bitfireAT/davx5-ose
+          **Commits behind:** $BEHIND
+
+          ### Before merging
+          - Review the diff for any conflicts with your rebranding/customisation
+          - Check the upstream [CHANGELOG](https://gitlab.com/bitfireAT/davx5-ose/-/blob/main-ose/CHANGELOG.md) for breaking changes
+          - Resolve any merge conflicts (usually in string resources, package names, icons)
+
+          > If there are merge conflicts this PR will show them — resolve them on the branch before merging.
+          EOF
+          )"
+
+      - name: No changes
+        if: steps.check.outputs.behind == '0'
+        run: echo "Your fork is already up to date with upstream. No PR needed."
