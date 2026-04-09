@@ -22,6 +22,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class IntroActivity : AppCompatActivity() {
 
+    companion object {
+        /** Optional: index of the page to start at. Defaults to 0. */
+        const val EXTRA_INITIAL_PAGE = "initialPage"
+    }
+
     val model by viewModels<IntroModel>()
 
 
@@ -29,11 +34,12 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val pages = model.pages
+        val initialPage = intent.getIntExtra(EXTRA_INITIAL_PAGE, 0).coerceIn(0, (pages.size - 1).coerceAtLeast(0))
 
         setContent {
             AppTheme {
                 val scope = rememberCoroutineScope()
-                val pagerState = rememberPagerState { pages.size }
+                val pagerState = rememberPagerState(initialPage = initialPage) { pages.size }
 
                 BackHandler {
                     if (pagerState.settledPage == 0) {
@@ -58,11 +64,14 @@ class IntroActivity : AppCompatActivity() {
 
 
     /**
-     * For launching the [IntroActivity]. Result is `true` when the user cancelled the intro.
+     * For launching the [IntroActivity]. Input is the initial page index to start at (0 = first page).
+     * Result is `true` when the user cancelled the intro.
      */
-    object Contract: ActivityResultContract<Unit?, Boolean>() {
-        override fun createIntent(context: Context, input: Unit?): Intent =
-            Intent(context, IntroActivity::class.java)
+    object Contract: ActivityResultContract<Int, Boolean>() {
+        override fun createIntent(context: Context, input: Int): Intent =
+            Intent(context, IntroActivity::class.java).apply {
+                putExtra(EXTRA_INITIAL_PAGE, input)
+            }
 
         override fun parseResult(resultCode: Int, intent: Intent?): Boolean {
             return resultCode == Activity.RESULT_CANCELED

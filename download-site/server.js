@@ -1,5 +1,5 @@
 /*
- * ITsquad Sync – APK Download Server
+ * Squadsync – APK Download Server
  * ------------------------------------
  * Express server that:
  *   1. Serves a branded download page at /
@@ -77,7 +77,7 @@ app.use((err, _req, res, _next) => {
 
 // ── Start ──────────────────────────────────────────────────────────────
 const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\n🟢  ITsquad Download Server running at  http://localhost:${PORT}\n`);
+  console.log(`\n🟢  Squadsync Download Server running at  http://localhost:${PORT}\n`);
   console.log(`   Static files : ${path.join(__dirname, 'public')}`);
   console.log(`   Logs         : ${logsDir}`);
   console.log(`   Place your .apk in public/ and visit /download\n`);

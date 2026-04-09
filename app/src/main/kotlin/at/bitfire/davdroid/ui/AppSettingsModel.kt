@@ -106,6 +106,7 @@ class AppSettingsModel @Inject constructor(
         settings.remove(BatteryOptimizationsPageModel.HINT_AUTOSTART_PERMISSION)
         settings.remove(OpenSourcePage.Model.SETTING_NEXT_DONATION_POPUP)
         settings.remove(TasksModel.HINT_OPENTASKS_NOT_INSTALLED)
+        settings.remove(AccountsModel.HINT_INTRO_COMPLETED)
     }
 
 

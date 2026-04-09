@@ -1,7 +1,7 @@
 {
-  "name": "itsquad-download-site",
+  "name": "squadsync-download-site",
   "version": "1.0.0",
-  "description": "Internal APK download portal for ITsquad Sync",
+  "description": "Internal APK download portal for Squadsync",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

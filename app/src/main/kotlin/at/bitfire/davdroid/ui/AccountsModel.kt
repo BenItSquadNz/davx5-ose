@@ -174,6 +174,10 @@ class AccountsModel @AssistedInject constructor(
 
     // other UI state
 
+    /** Tracks whether the intro has already been shown in this ViewModel lifetime.
+     *  Stored here (not in Compose state) so it survives view detach/reattach cycles. */
+    var introShown: Boolean = false
+
     val showAppIntro: Flow<Boolean> = flow<Boolean> {
         val anyShowAlwaysPage = introPageFactory.introPages.any { introPage ->
             val policy = introPage.getShowPolicy()
@@ -185,8 +189,25 @@ class AccountsModel @AssistedInject constructor(
         emit(anyShowAlwaysPage)
     }.flowOn(Dispatchers.Default)
 
+    /**
+     * The index of the first SHOW_ALWAYS page in the active page list.
+     * - On first login (intro never completed): returns 0 so the full intro plays from the Welcome page.
+     * - On subsequent runs (intro completed at least once): skips to the first SHOW_ALWAYS page (the checkbox page).
+     */
+    val introInitialPage: Flow<Int> = flow {
+        val activePages = introPageFactory.introPages.filter {
+            it.getShowPolicy() != IntroPage.ShowPolicy.DONT_SHOW
+        }
+        val firstRunComplete = settings.getBooleanOrNull(HINT_INTRO_COMPLETED) == true
+        val idx = if (firstRunComplete)
+            activePages.indexOfFirst { it.getShowPolicy() == IntroPage.ShowPolicy.SHOW_ALWAYS }
+        else
+            0
+        emit(if (idx >= 0) idx else 0)
+    }.flowOn(Dispatchers.Default)
 
-    // warnings
+
+    // helpers
 
     private val connectivityManager = context.getSystemService<ConnectivityManager>()!!
     private val powerManager: PowerManager = context.getSystemService<PowerManager>()!!
@@ -295,5 +316,11 @@ class AccountsModel @AssistedInject constructor(
             logger.fine("$authority provider app not found")
             false
         }
+
+
+    companion object {
+        /** Persisted flag: intro has been completed at least once. Used to skip the Welcome page on repeat visits. */
+        const val HINT_INTRO_COMPLETED = "intro_completed"
+    }
 
 }

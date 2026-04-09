@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import at.bitfire.davdroid.settings.SettingsManager
 import at.bitfire.davdroid.ui.account.AccountActivity
 import at.bitfire.davdroid.ui.intro.IntroActivity
 import at.bitfire.davdroid.ui.setup.LoginActivity
@@ -22,10 +23,16 @@ class AccountsActivity: AppCompatActivity() {
     @Inject
     lateinit var accountsDrawerHandler: AccountsDrawerHandler
 
+    @Inject
+    lateinit var settingsManager: SettingsManager
+
     private val introActivityLauncher = registerForActivityResult(IntroActivity.Contract) { cancelled ->
         if (cancelled)
             finish()
+        else
+            settingsManager.putBoolean(AccountsModel.HINT_INTRO_COMPLETED, true)
     }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +44,8 @@ class AccountsActivity: AppCompatActivity() {
         setContent {
             AccountsScreen(
                 initialSyncAccounts = syncAccounts,
-                onShowAppIntro = {
-                    introActivityLauncher.launch(null)
+                onShowAppIntro = { initialPage ->
+                    introActivityLauncher.launch(initialPage)
                 },
                 accountsDrawerHandler = accountsDrawerHandler,
                 onAddAccount = {

@@ -77,7 +77,7 @@ function assert(label, condition) {
   try {
     const res = await get(`${base}/`);
     assert('GET / returns 200', res.status === 200);
-    assert('GET / contains page title', res.body.includes('ITsquad Sync'));
+    assert('GET / contains page title', res.body.includes('Squadsync'));
     assert('GET / contains download button', res.body.includes('/download'));
   } catch (e) {
     assert(`GET / reachable (${e.message})`, false);
