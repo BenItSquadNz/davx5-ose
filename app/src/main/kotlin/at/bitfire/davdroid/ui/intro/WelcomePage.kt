@@ -18,12 +18,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
@@ -79,14 +79,28 @@ class WelcomePage: IntroPage() {
             ) {
                 Spacer(modifier = Modifier.weight(0.8f))
 
-                // App icon — large and centered
+                // The same wordmark used on IT Squad's website.
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    painter = painterResource(R.drawable.itsquad_wordmark),
                     contentDescription = null,
-                    modifier = Modifier.size(180.dp)
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(78.dp)
                 )
 
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(18.dp))
+
+                Text(
+                    text = stringResource(R.string.app_name),
+                    color = Color.White,
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontWeight = FontWeight.SemiBold,
+                        letterSpacing = 1.sp
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(36.dp))
 
                 // Primary slogan — white, clean, large
                 Text(
@@ -105,7 +119,7 @@ class WelcomePage: IntroPage() {
                 // Secondary slogan — brand green, bold
                 Text(
                     text = stringResource(R.string.intro_slogan2),
-                    color = M3ColorScheme.secondaryLight,  // brand green #8DC63F
+                    color = M3ColorScheme.secondaryLight,
                     style = MaterialTheme.typography.displaySmall.copy(
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 1.sp
@@ -169,8 +183,9 @@ class WelcomePage: IntroPage() {
                 ) {
                     // Logo on the left
                     Image(
-                        painter = painterResource(R.drawable.ic_launcher_foreground),
+                        painter = painterResource(R.drawable.itsquad_wordmark),
                         contentDescription = null,
+                        contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .fillMaxHeight(0.5f)
                             .weight(1f)

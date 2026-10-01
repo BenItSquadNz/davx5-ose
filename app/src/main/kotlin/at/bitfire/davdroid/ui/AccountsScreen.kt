@@ -45,6 +45,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -194,7 +195,13 @@ fun AccountsScreen(
                         },
                         title = {
                             Text(stringResource(R.string.app_name))
-                        }
+                        },
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.tertiary,
+                            titleContentColor = MaterialTheme.colorScheme.onTertiary,
+                            navigationIconContentColor = MaterialTheme.colorScheme.onTertiary,
+                            actionIconContentColor = MaterialTheme.colorScheme.onTertiary
+                        )
                     )
                 },
                 floatingActionButton = {

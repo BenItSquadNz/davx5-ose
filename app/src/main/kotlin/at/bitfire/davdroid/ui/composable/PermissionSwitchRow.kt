@@ -31,8 +31,8 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 fun PermissionSwitchRow(
     text: String,
     allPermissionsGranted: Boolean,
-    summaryWhenGranted: String,
-    summaryWhenNotGranted: String,
+    summaryWhenGranted: String? = null,
+    summaryWhenNotGranted: String? = null,
     modifier: Modifier = Modifier,
     fontWeight: FontWeight = FontWeight.Normal,
     onLaunchRequest: () -> Unit
@@ -50,11 +50,13 @@ fun PermissionSwitchRow(
                 fontWeight = fontWeight,
                 style = MaterialTheme.typography.bodyLarge
             )
-            Text(
-                text = if (allPermissionsGranted) summaryWhenGranted else summaryWhenNotGranted,
-                modifier = Modifier.fillMaxWidth(),
-                style = MaterialTheme.typography.bodyMedium
-            )
+            val summary = if (allPermissionsGranted) summaryWhenGranted else summaryWhenNotGranted
+            if (summary != null)
+                Text(
+                    text = summary,
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.bodyMedium
+                )
         }
         Switch(
             checked = allPermissionsGranted,
@@ -81,8 +83,8 @@ fun PermissionSwitchRow(
 fun PermissionSwitchRow(
     text: String,
     permissions: List<String>,
-    summaryWhenGranted: String,
-    summaryWhenNotGranted: String,
+    summaryWhenGranted: String? = null,
+    summaryWhenNotGranted: String? = null,
     modifier: Modifier = Modifier,
     fontWeight: FontWeight = FontWeight.Normal
 ) {

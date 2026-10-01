@@ -8,12 +8,9 @@ import android.content.Intent
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import at.bitfire.davdroid.ui.setup.LoginTypesProvider.LoginAction
-import java.util.logging.Logger
 import javax.inject.Inject
 
-class StandardLoginTypesProvider @Inject constructor(
-    private val logger: Logger
-) : LoginTypesProvider {
+class StandardLoginTypesProvider @Inject constructor() : LoginTypesProvider {
 
     companion object {
         val genericLoginTypes = listOf(
@@ -40,10 +37,8 @@ class StandardLoginTypesProvider @Inject constructor(
                     LoginAction(EmailLogin, true)
                 listOf("caldavs", "carddavs", "davx5", "http", "https").any { uri?.scheme == it } ->
                     LoginAction(UrlLogin, true)
-                else -> {
-                    logger.warning("Did not understand login intent: $intent")
-                    LoginAction(defaultLoginType, false) // Don't skip login type page if intent is unclear
-                }
+                else ->
+                    LoginAction(defaultLoginType, true)
             }
         }
 

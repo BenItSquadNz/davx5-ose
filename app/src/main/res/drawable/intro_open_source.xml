@@ -157,7 +157,7 @@
   <path
       android:pathData="M442.29,236.3m-18.25,0a18.25,18.25 0,1 1,36.5 0a18.25,18.25 0,1 1,-36.5 0"
       android:strokeAlpha="0.8"
-      android:fillColor="#8dc63f"
+      android:fillColor="#8cc641"
       android:fillAlpha="0.8"/>
   <path
       android:pathData="M442.29,290.49m-18.25,0a18.25,18.25 0,1 1,36.5 0a18.25,18.25 0,1 1,-36.5 0"
@@ -202,7 +202,7 @@
   <path
       android:pathData="M411.9,122.66h61.23v42.2h-61.23z"
       android:strokeAlpha="0.8"
-      android:fillColor="#8dc63f"
+      android:fillColor="#8cc641"
       android:fillAlpha="0.8"/>
   <path
       android:pathData="M610.48,122.66h61.23v42.2h-61.23z"

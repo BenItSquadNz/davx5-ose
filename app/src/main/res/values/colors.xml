@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ITsquad brand palette – extracted from logo SVG -->
-    <color name="primaryColor">#25A9E0</color>       <!-- cyan: IT mark, primary accent -->
-    <color name="primaryLightColor">#8DC63F</color>   <!-- green: SQUAD wordmark, CTA accent -->
+    <!-- Exact opaque colours sampled from the IT Squad website wordmark. -->
+    <color name="primaryColor">#27AAE1</color>
+    <color name="primaryLightColor">#8CC641</color>
     <color name="primaryDarkColor">#2F5577</color>    <!-- navy: backgrounds, depth -->
     <color name="navyColor">#2F5577</color>
-    <color name="lightBlueColor">#25A9E0</color>
-    <color name="brandGreen">#8DC63F</color>
+    <color name="lightBlueColor">#27AAE1</color>
+    <color name="brandGreen">#8CC641</color>
 </resources>

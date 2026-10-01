@@ -45,7 +45,7 @@ fun StandardLoginTypePage(
     
     onContinue: () -> Unit = {}
 ) {
-    var showMoreOptions by remember { mutableStateOf(false) }
+    var showMoreOptions by remember { mutableStateOf(selectedLoginType != UrlLogin) }
 
     Assistant(
         nextLabel = stringResource(R.string.login_continue),
@@ -59,7 +59,7 @@ fun StandardLoginTypePage(
                 modifier = Modifier.padding(vertical = 8.dp)
             )
 
-            // Show URL login prominently — it's the primary login method
+            // Match the URL-and-user-name path shown in Condex's Connect a Device wizard.
             LoginTypeSelector(
                 title = stringResource(UrlLogin.title),
                 selected = UrlLogin == selectedLoginType,
@@ -84,8 +84,8 @@ fun StandardLoginTypePage(
 
             AnimatedVisibility(visible = showMoreOptions) {
                 Column {
-                    // Other generic login types (Email, Advanced)
-                    for (type in StandardLoginTypesProvider.genericLoginTypes.drop(1))
+                    // Keep other supported login methods available.
+                    for (type in listOf(EmailLogin, AdvancedLogin))
                         LoginTypeSelector(
                             title = stringResource(type.title),
                             selected = type == selectedLoginType,

@@ -179,23 +179,17 @@ fun PermissionsScreen(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                 PermissionSwitchRow(
                     text = stringResource(R.string.permissions_notification_title),
-                    summaryWhenGranted = stringResource(R.string.permissions_notification_status_on),
-                    summaryWhenNotGranted = stringResource(R.string.permissions_notification_status_off),
                     permissions = listOf(Manifest.permission.POST_NOTIFICATIONS),
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
 
             PermissionSwitchRow(
                 text = stringResource(R.string.permissions_calendar_title),
-                summaryWhenGranted = stringResource(R.string.permissions_calendar_status_on),
-                summaryWhenNotGranted = stringResource(R.string.permissions_calendar_status_off),
                 permissions = PermissionUtils.CALENDAR_PERMISSIONS.toList(),
                 modifier = Modifier.padding(vertical = 4.dp)
             )
             PermissionSwitchRow(
                 text = stringResource(R.string.permissions_contacts_title),
-                summaryWhenGranted = stringResource(R.string.permissions_contacts_status_on),
-                summaryWhenNotGranted = stringResource(R.string.permissions_contacts_status_off),
                 permissions = PermissionUtils.CONTACT_PERMISSIONS.toList(),
                 modifier = Modifier.padding(vertical = 4.dp)
             )
@@ -203,24 +197,18 @@ fun PermissionsScreen(
             if (jtxAvailable == true)
                 PermissionSwitchRow(
                     text = stringResource(R.string.permissions_jtx_title),
-                    summaryWhenGranted = stringResource(R.string.permissions_tasks_status_on),
-                    summaryWhenNotGranted = stringResource(R.string.permissions_tasks_status_off),
                     permissions = TaskProvider.PERMISSIONS_JTX.toList(),
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
             if (openTasksAvailable == true)
                 PermissionSwitchRow(
                     text = stringResource(R.string.permissions_opentasks_title),
-                    summaryWhenGranted = stringResource(R.string.permissions_tasks_status_on),
-                    summaryWhenNotGranted = stringResource(R.string.permissions_tasks_status_off),
                     permissions = TaskProvider.PERMISSIONS_OPENTASKS.toList(),
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
             if (tasksOrgAvailable == true)
                 PermissionSwitchRow(
                     text = stringResource(R.string.permissions_tasksorg_title),
-                    summaryWhenGranted = stringResource(R.string.permissions_tasks_status_on),
-                    summaryWhenNotGranted = stringResource(R.string.permissions_tasks_status_off),
                     permissions = TaskProvider.PERMISSIONS_TASKS_ORG.toList(),
                     modifier = Modifier.padding(vertical = 4.dp)
                 )

@@ -11,17 +11,17 @@ import androidx.compose.ui.graphics.Color
 @Suppress("MemberVisibilityCanBePrivate")
 object M3ColorScheme {
 
-    // ── Brand palette (exact colors from ITsquad logo SVG) ──────────────
-    // Cyan  #25A9E0  →  primary   (IT mark, buttons, active indicators)
-    // Green #8DC63F  →  secondary (SQUAD wordmark, accent, FABs)
+    // ── Brand palette sampled from the IT Squad website wordmark ────────
+    // Cyan  #27AAE1  →  primary   (IT mark, buttons, active indicators)
+    // Green #8CC641  →  secondary (SQUAD wordmark, accent, FABs)
     // Navy  #2F5577  →  tertiary  (top bars, containers, depth)
 
     // ── Light scheme ────────────────────────────────────────────────────
-    val primaryLight = Color(0xFF25A9E0)            // cyan – prominent accents
+    val primaryLight = Color(0xFF27AAE1)            // cyan – prominent accents
     val onPrimaryLight = Color(0xFF00232E)           // very dark teal – AA on cyan
     val primaryContainerLight = Color(0xFFD4F0FC)    // pale cyan tint
     val onPrimaryContainerLight = Color(0xFF042830)  // near-black teal
-    val secondaryLight = Color(0xFF8DC63F)           // green – accent
+    val secondaryLight = Color(0xFF8CC641)           // green – accent
     val onSecondaryLight = Color(0xFF0D2200)         // very dark green – AA on green
     val secondaryContainerLight = Color(0xFFDAEFB8)  // pale green tint
     val onSecondaryContainerLight = Color(0xFF142006)
@@ -44,7 +44,7 @@ object M3ColorScheme {
     val scrimLight = Color(0xFF000000)
     val inverseSurfaceLight = Color(0xFF2F3133)
     val inverseOnSurfaceLight = Color(0xFFF1F0F2)
-    val inversePrimaryLight = Color(0xFF8DC63F)
+    val inversePrimaryLight = Color(0xFF8CC641)
     val surfaceDimLight = Color(0xFFDADCDE)
     val surfaceBrightLight = Color(0xFFFAFAFB)
     val surfaceContainerLowestLight = Color(0xFFFFFFFF)
@@ -81,7 +81,7 @@ object M3ColorScheme {
     val scrimDark = Color(0xFF000000)
     val inverseSurfaceDark = Color(0xFFE2E2E4)
     val inverseOnSurfaceDark = Color(0xFF2F3133)
-    val inversePrimaryDark = Color(0xFF8DC63F)
+    val inversePrimaryDark = Color(0xFF8CC641)
     val surfaceDimDark = Color(0xFF111416)
     val surfaceBrightDark = Color(0xFF373A3C)
     val surfaceContainerLowestDark = Color(0xFF0C0E10)

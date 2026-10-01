@@ -8,17 +8,15 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Feedback
@@ -37,7 +35,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
@@ -251,27 +248,19 @@ fun BrandingHeader() {
     Column(
         Modifier
             .statusBarsPadding()
-            .background(Color.DarkGray)
+            .background(Color(0xFF2F5577))
             .fillMaxWidth()
             .padding(16.dp)
     ) {
         Spacer(Modifier.height(16.dp))
-        Box(
-            Modifier.background(
-                color = M3ColorScheme.tertiaryLight,
-                shape = RoundedCornerShape(16.dp)
-            )
-        ) {
-            Icon(
-                painterResource(R.drawable.ic_launcher_foreground),
-                stringResource(R.string.app_name),
-                tint = Color.White,
-                modifier = Modifier
-                    .scale(1.2f)
-                    .size(64.dp)
-            )
-        }
-        Spacer(Modifier.height(8.dp))
+        Image(
+            painter = painterResource(R.drawable.itsquad_wordmark),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth(0.85f)
+                .height(53.dp)
+        )
+        Spacer(Modifier.height(16.dp))
 
         Text(
             stringResource(R.string.app_name),

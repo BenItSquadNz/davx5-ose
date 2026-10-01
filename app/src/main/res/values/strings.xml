@@ -5,12 +5,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- common strings -->
-    <string name="app_name" translatable="false">ITsquad</string>
+    <string name="app_name" translatable="false">Squad Sync</string>
 
     <string name="account_invalid">Account does not exist (anymore)</string>
     <string name="account_type" translatable="false">bitfire.at.davdroid</string>
     <string name="account_type_address_book" translatable="false">at.bitfire.davdroid.address_book</string>
-    <string name="account_title_address_book">ITsquad Address book</string>
+    <string name="account_title_address_book">Squad Sync address book</string>
     <string name="account_prefs_use_app">Don\'t change the account here! Directly use the app to manage accounts instead.</string>
     <string name="dialog_delete">Delete</string>
     <string name="dialog_remove">Remove</string>
@@ -44,7 +44,7 @@
     <string name="intro_battery_text">For synchronization at regular intervals, %s must be allowed to run in the background. Otherwise, Android may pause synchronization at any time.</string>
     <string name="intro_battery_dont_show">I don\'t need regular sync intervals.*</string>
     <string name="intro_autostart_title">%s compatibility</string>
-    <string name="intro_autostart_text">Vendor-specific firmware may block synchronization. If you\'re affected, you can only resolve this manually.</string>
+    <string name="intro_autostart_text">Some phones have battery-saving features that can stop contact syncing in the background. If sync stops working, go to your phone\'s battery settings and allow Squad Sync to run in the background.</string>
     <string name="intro_autostart_dont_show">I have done the required settings. Don\'t remind me anymore.*</string>
     <string name="intro_leave_unchecked">* Leave unchecked to be reminded later. Can be reset in app settings / %s.</string>
     <string name="intro_more_info">More information</string>
@@ -76,16 +76,16 @@
     <string name="permissions_title">Permissions</string>
     <string name="permissions_text">%s requires permissions to work properly.</string>
     <string name="permissions_all_title">All of the below</string>
-    <string name="permissions_all_status_off">Use this to enable all features (recommended)</string>
+    <string name="permissions_all_status_off">Use this to enable all features</string>
     <string name="permissions_all_status_on">All permissions granted</string>
     <string name="permissions_contacts_title">Contacts permissions</string>
-    <string name="permissions_contacts_status_off">No contact sync (not recommended)</string>
+    <string name="permissions_contacts_status_off">No contact sync</string>
     <string name="permissions_contacts_status_on">Contact sync possible</string>
     <string name="permissions_calendar_title">Calendar permissions</string>
-    <string name="permissions_calendar_status_off">No calendar sync (not recommended)</string>
+    <string name="permissions_calendar_status_off">No calendar sync</string>
     <string name="permissions_calendar_status_on">Calendar sync possible</string>
     <string name="permissions_notification_title">Notification permission</string>
-    <string name="permissions_notification_status_off">Notifications disabled (not recommended)</string>
+    <string name="permissions_notification_status_off">Notifications disabled</string>
     <string name="permissions_notification_status_on">Notifications enabled</string>
     <string name="permissions_jtx_title">jtx Board permissions</string>
     <string name="permissions_opentasks_title">OpenTasks permissions</string>
@@ -93,7 +93,7 @@
     <string name="permissions_tasks_status_off">No task sync</string>
     <string name="permissions_tasks_status_on">Task sync possible</string>
     <string name="permissions_autoreset_title">Keep permissions</string>
-    <string name="permissions_autoreset_status_off">Permissions may be reset automatically (not recommended)</string>
+    <string name="permissions_autoreset_status_off">Permissions may be reset automatically</string>
     <string name="permissions_autoreset_status_on">Permissions won\'t be reset automatically</string>
     <string name="permissions_autoreset_instruction">Click Permissions > uncheck \"Remove permissions if app isn\'t used\"</string>
     <string name="permissions_app_settings_hint">If a switch doesn\'t work, use app settings / Permissions.</string>
@@ -148,8 +148,8 @@
     <string name="navigation_drawer_support_project">Support the project</string>
     <string name="navigation_drawer_contribute">How to contribute</string>
     <string name="navigation_drawer_privacy_policy">Privacy policy</string>
-    <string name="account_list_welcome">Welcome to ITsquad!</string>
-    <string name="account_list_empty">Connect to your server and keep your calendars and contacts synchronized.</string>
+    <string name="account_list_welcome">Welcome to Squad Sync!</string>
+    <string name="account_list_empty">Connect to Condex to keep your work contacts in sync.</string>
     <string name="accounts_sync_all">Sync all accounts</string>
 
     <!-- Sync warnings -->
@@ -523,7 +523,7 @@
     <string name="webdav_provider_root_title">WebDAV mount</string>
 
     <!-- sync -->
-    <string name="sync_error_permissions">ITsquad permissions</string>
+    <string name="sync_error_permissions">Squad Sync permissions</string>
     <string name="sync_error_permissions_text">Additional permissions required</string>
     <string name="sync_error_tasks_too_old">%s too old</string>
     <string name="sync_error_tasks_required_version">Minimum required version: %1$s</string>
