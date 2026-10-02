@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -162,22 +161,6 @@ fun AccountDetailsPageContent(
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
-
-            // email address info
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(top = 16.dp)
-            ) {
-                Icon(
-                    Icons.Default.Email,
-                    contentDescription = null,
-                    modifier = Modifier.padding(top = 8.dp, end = 8.dp, bottom = 8.dp)
-                )
-                Text(
-                    stringResource(R.string.login_account_name_info),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-            }
 
             // group type selector
             Text(
