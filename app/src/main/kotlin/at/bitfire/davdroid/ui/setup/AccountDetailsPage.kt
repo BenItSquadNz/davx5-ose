@@ -6,7 +6,6 @@ package at.bitfire.davdroid.ui.setup
 
 import android.accounts.Account
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +33,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,7 +42,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import at.bitfire.davdroid.R
 import at.bitfire.davdroid.ui.composable.Assistant
-import at.bitfire.vcard4android.GroupMethod
 
 @Composable
 fun AccountDetailsPage(
@@ -71,9 +67,6 @@ fun AccountDetailsPage(
         accountNameAlreadyExists = uiState.accountNameExists,
         onUpdateAccountName = { model.updateAccountName(it) },
         showApostropheWarning = uiState.showApostropheWarning,
-        groupMethod = uiState.groupMethod,
-        groupMethodReadOnly = uiState.groupMethodReadOnly,
-        onUpdateGroupMethod = { model.updateGroupMethod(it) },
         onCreateAccount = { model.createAccount() },
         creatingAccount = uiState.creatingAccount
     )
@@ -87,9 +80,6 @@ fun AccountDetailsPageContent(
     accountNameAlreadyExists: Boolean,
     onUpdateAccountName: (String) -> Unit = {},
     showApostropheWarning: Boolean,
-    groupMethod: GroupMethod,
-    groupMethodReadOnly: Boolean,
-    onUpdateGroupMethod: (GroupMethod) -> Unit = {},
     onCreateAccount: () -> Unit = {},
     creatingAccount: Boolean
 ) {
@@ -161,33 +151,6 @@ fun AccountDetailsPageContent(
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
-
-            // group type selector
-            Text(
-                stringResource(R.string.login_account_contact_group_method),
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(top = 16.dp)
-            )
-            val groupMethodNames = stringArrayResource(R.array.settings_contact_group_method_entries)
-            val groupMethodValues = stringArrayResource(R.array.settings_contact_group_method_values).map { GroupMethod.valueOf(it) }
-            for ((name, method) in groupMethodNames.zip(groupMethodValues)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(
-                        selected = groupMethod == method,
-                        enabled = !groupMethodReadOnly,
-                        onClick = { onUpdateGroupMethod(method) }
-                    )
-
-                    var modifier = Modifier.padding(vertical = 4.dp)
-                    if (!groupMethodReadOnly)
-                        modifier = modifier.clickable(onClick = { onUpdateGroupMethod(method) })
-                    Text(
-                        name,
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = modifier
-                    )
-                }
-            }
         }
     }
 }
@@ -200,8 +163,6 @@ fun AccountDetailsPage_Content_Preview() {
         accountName = "account@example.com",
         accountNameAlreadyExists = false,
         showApostropheWarning = false,
-        groupMethod = GroupMethod.GROUP_VCARDS,
-        groupMethodReadOnly = false,
         creatingAccount = true
     )
 }
@@ -214,8 +175,6 @@ fun AccountDetailsPage_Content_Preview_With_Apostrophe() {
         accountName = "account'example.com",
         accountNameAlreadyExists = true,
         showApostropheWarning = true,
-        groupMethod = GroupMethod.CATEGORIES,
-        groupMethodReadOnly = true,
         creatingAccount = false
     )
 }

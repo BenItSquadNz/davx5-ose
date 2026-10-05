@@ -14,8 +14,6 @@ import androidx.lifecycle.viewModelScope
 import at.bitfire.davdroid.di.DefaultDispatcher
 import at.bitfire.davdroid.repository.AccountRepository
 import at.bitfire.davdroid.servicedetection.DavResourceFinder
-import at.bitfire.davdroid.settings.AccountSettings
-import at.bitfire.davdroid.settings.SettingsManager
 import at.bitfire.vcard4android.GroupMethod
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -26,15 +24,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runInterruptible
 import kotlinx.coroutines.withContext
-import java.util.logging.Logger
 
 @HiltViewModel(assistedFactory = LoginScreenModel.Factory::class)
 class LoginScreenModel @AssistedInject constructor(
@@ -44,10 +38,8 @@ class LoginScreenModel @AssistedInject constructor(
     private val accountRepository: AccountRepository,
     @ApplicationContext val context: Context,
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
-    private val logger: Logger,
     val loginTypesProvider: LoginTypesProvider,
-    private val resourceFinderFactory: DavResourceFinder.Factory,
-    settingsManager: SettingsManager
+    private val resourceFinderFactory: DavResourceFinder.Factory
 ): ViewModel() {
 
     @AssistedFactory
@@ -107,7 +99,6 @@ class LoginScreenModel @AssistedInject constructor(
                     ?: loginInfo.baseUri?.host
                     ?: ""
                 updateAccountNameAndEmails(initialAccountName, emails)
-                updateGroupMethod(loginInfo.suggestedGroupMethod)
                 page = Page.AccountDetails
             }
 
@@ -227,8 +218,6 @@ class LoginScreenModel @AssistedInject constructor(
         val accountName: String = "",
         val suggestedAccountNames: Set<String> = emptySet(),
         val accountNameExists: Boolean = false,
-        val groupMethod: GroupMethod = GroupMethod.GROUP_VCARDS,
-        val groupMethodReadOnly: Boolean = false,
         val creatingAccount: Boolean = false,
         val createdAccount: Account? = null,
         val couldNotCreateAccount: Boolean = false
@@ -236,33 +225,8 @@ class LoginScreenModel @AssistedInject constructor(
         val showApostropheWarning = accountName.contains('\'') || accountName.contains('"')
     }
 
-    private val forcedGroupMethod = settingsManager
-        .getStringFlow(AccountSettings.KEY_CONTACT_GROUP_METHOD)
-        .map { groupMethodName ->
-            // map group method name to GroupMethod
-            if (groupMethodName != null)
-                try {
-                    GroupMethod.valueOf(groupMethodName)
-                } catch (e: IllegalArgumentException) {
-                    logger.warning("Invalid forced group method: $groupMethodName")
-                    null
-                }
-            else
-                null
-        }
-
-    // backing field that is combined with dynamic content for the resulting UI State
-    private var _accountDetailsUiState = MutableStateFlow(AccountDetailsUiState())
-    val accountDetailsUiState = combine(_accountDetailsUiState, forcedGroupMethod) { uiState, method ->
-        // set group type to read-only if group method is forced
-        var combinedState = uiState.copy(groupMethodReadOnly = method != null)
-
-        // apply forced group method, if applicable
-        if (method != null)
-            combinedState = combinedState.copy(groupMethod = method)
-
-        combinedState
-    }.stateIn(viewModelScope, SharingStarted.Lazily, _accountDetailsUiState.value)
+    private val _accountDetailsUiState = MutableStateFlow(AccountDetailsUiState())
+    val accountDetailsUiState = _accountDetailsUiState.asStateFlow()
 
     fun updateAccountName(accountName: String) {
         _accountDetailsUiState.update { currentState ->
@@ -283,12 +247,6 @@ class LoginScreenModel @AssistedInject constructor(
         }
     }
 
-    fun updateGroupMethod(groupMethod: GroupMethod) {
-        _accountDetailsUiState.update { currentState ->
-            currentState.copy(groupMethod = groupMethod)
-        }
-    }
-
     fun resetCouldNotCreateAccount() {
         _accountDetailsUiState.update { currentState ->
             currentState.copy(couldNotCreateAccount = false)
@@ -306,7 +264,7 @@ class LoginScreenModel @AssistedInject constructor(
                     accountDetailsUiState.value.accountName,
                     loginInfo.credentials,
                     foundConfig!!,
-                    accountDetailsUiState.value.groupMethod
+                    GroupMethod.CATEGORIES
                 )
             }
 
