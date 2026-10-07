@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--common strings-->
-  <string name="app_name">ITsquad</string>
-    <string name="account_title_address_book">ITsquad Osoitekirja</string>
+  <string name="app_name">Contact Sync</string>
+    <string name="account_title_address_book">Contact Sync Osoitekirja</string>
     <string name="help">Apua</string>
     <string name="notification_channel_debugging">Debuggaus</string>
     <string name="notification_channel_general">Muut tärkeät viestit</string>

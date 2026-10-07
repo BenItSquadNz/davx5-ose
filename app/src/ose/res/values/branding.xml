@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Squad Sync</string>
+    <string name="account_title_address_book">Squad Sync address book</string>
+    <string name="intro_autostart_text">Some phones have battery-saving features that can stop contact syncing in the background. If sync stops working, go to your phone\'s battery settings and allow Squad Sync to run in the background.</string>
+    <string name="account_list_welcome">Welcome to Squad Sync!</string>
+    <string name="account_list_empty">Connect to Condex to keep your work contacts in sync.</string>
+    <string name="sync_error_permissions">Squad Sync permissions</string>
+</resources>

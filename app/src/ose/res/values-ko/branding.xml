@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title_address_book">ITsquad 주소록</string>
+  <string name="account_list_welcome">ITsquad에 오신 것을 환영합니다!</string>
+  <string name="sync_error_permissions">ITsquad 권한</string>
+</resources>

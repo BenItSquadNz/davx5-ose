@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title_address_book">Llibreta d’adreces del ITsquad</string>
+  <string name="account_list_welcome">Us donem la benvinguda al ITsquad!</string>
+  <string name="sync_error_permissions">Permisos del ITsquad</string>
+</resources>

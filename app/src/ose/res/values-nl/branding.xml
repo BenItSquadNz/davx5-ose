@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_title_address_book">ITsquad Adresboek</string>
+    <string name="account_list_welcome">Welkom bij ITsquad!</string>
+  <string name="sync_error_permissions">ITsquad rechten</string>
+</resources>

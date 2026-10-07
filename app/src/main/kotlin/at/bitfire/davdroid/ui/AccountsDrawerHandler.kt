@@ -254,7 +254,7 @@ fun BrandingHeader() {
     ) {
         Spacer(Modifier.height(16.dp))
         Image(
-            painter = painterResource(R.drawable.itsquad_wordmark),
+            painter = painterResource(R.drawable.brand_wordmark),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth(0.85f)

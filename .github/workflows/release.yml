@@ -27,16 +27,19 @@ jobs:
       - uses: gradle/actions/setup-gradle@v5
 
       - name: Prepare keystore
-        run: echo ${{ secrets.android_keystore_base64 }} | base64 -d >$GITHUB_WORKSPACE/keystore.jks
+        run: printf '%s' "$SQUAD_SYNC_KEYSTORE_BASE64" | base64 -d >"$GITHUB_WORKSPACE/keystore.p12"
+        env:
+          SQUAD_SYNC_KEYSTORE_BASE64: ${{ secrets.squad_sync_keystore_base64 }}
 
       - name: Build signed package
         # Use build cache to speed up building of build variants, but clean caches from previous tests before
         run: ./gradlew --build-cache --configuration-cache --no-daemon app:clean app:assembleRelease
         env:
-          ANDROID_KEYSTORE: ${{ github.workspace }}/keystore.jks
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.android_keystore_password }}
-          ANDROID_KEY_ALIAS: ${{ secrets.android_key_alias }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.android_key_password }}
+          ANDROID_KEYSTORE: ${{ github.workspace }}/keystore.p12
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.squad_sync_keystore_password }}
+          ANDROID_KEY_ALIAS: ${{ secrets.squad_sync_key_alias }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.squad_sync_key_password }}
+          ANDROID_HOMEPAGE_URL: https://itsquad.nz
 
       - name: Create Github release
         uses: softprops/action-gh-release@v2

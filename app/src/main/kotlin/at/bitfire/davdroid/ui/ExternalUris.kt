@@ -20,7 +20,7 @@ object ExternalUris {
     object Homepage {
 
         val baseUrl
-            get() = "https://itsquad.nz".toUri()
+            get() = BuildConfig.HOMEPAGE_URL.toUri()
 
         const val PATH_FAQ = "faq"
         const val PATH_FAQ_SYNC_NOT_RUN = "synchronization-is-not-run-as-expected"

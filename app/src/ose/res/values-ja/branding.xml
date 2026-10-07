@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title_address_book">ITsquad アドレス帳</string>
+  <string name="account_list_welcome">ITsquad にようこそ！</string>
+  <string name="sync_error_permissions">ITsquad の権限</string>
+</resources>

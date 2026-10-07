@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IT mark from the IT Squad wordmark: cyan tile, white lettering and cut corner. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#27AAE1"
+        android:pathData="M27,29 L81,29 L81,75 L72,75 L65,83 L65,75 L27,75 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M35,37 L43,37 L43,67 L35,67 Z M47,37 L73,37 L73,44 L64,44 L64,67 L56,67 L56,44 L47,44 Z" />
+</vector>

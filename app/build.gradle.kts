@@ -16,18 +16,22 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "at.bitfire.davdroid"
+        applicationId = "nz.itsquad.squadsync"
 
-        versionCode = 405090007
-        versionName = "4.5.9-rc.5"
+        versionCode = 405090008
+        versionName = "4.5.9-rc.6"
 
-        base.archivesName = "davx5-$versionCode-$versionName"
+        base.archivesName = "contact-sync-$versionCode-$versionName"
 
         minSdk = 24        // Android 7.0
         targetSdk = 36     // Android 16
 
         // whether the build supports and allows to use custom certificates
         buildConfigField("boolean", "allowCustomCerts", "true")
+        buildConfigField(
+            "String", "HOMEPAGE_URL",
+            "\"${providers.environmentVariable("ANDROID_HOMEPAGE_URL").orElse("https://example.org").get()}\""
+        )
 
         testInstrumentationRunner = "at.bitfire.davdroid.HiltTestRunner"
     }
@@ -68,7 +72,7 @@ android {
     }
 
     signingConfigs {
-        create("bitfire") {
+        create("releaseSigning") {
             storeFile = file(System.getenv("ANDROID_KEYSTORE") ?: "/dev/null")
             storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
             keyAlias = System.getenv("ANDROID_KEY_ALIAS")
@@ -83,7 +87,7 @@ android {
 
             isShrinkResources = true
 
-            signingConfig = signingConfigs.findByName("bitfire")
+            signingConfig = signingConfigs.findByName("releaseSigning")
         }
     }
 

@@ -59,7 +59,7 @@ fun StandardLoginTypePage(
                 modifier = Modifier.padding(vertical = 8.dp)
             )
 
-            // Match the URL-and-user-name path shown in Condex's Connect a Device wizard.
+            // Keep the URL-and-user-name path clear for CardDAV setup.
             LoginTypeSelector(
                 title = stringResource(UrlLogin.title),
                 selected = UrlLogin == selectedLoginType,

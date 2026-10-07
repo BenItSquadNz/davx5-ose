@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Single-colour IT mark for Android themed launcher icons. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:fillType="evenOdd"
-        android:pathData="M27,29 L81,29 L81,75 L72,75 L65,83 L65,75 L27,75 Z M35,37 L43,37 L43,67 L35,67 Z M47,37 L73,37 L73,44 L64,44 L64,67 L56,67 L56,44 L47,44 Z" />
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M26,32 L82,32 Q87,32 87,37 L87,75 Q87,80 82,80 L26,80 Q21,80 21,75 L21,37 Q21,32 26,32 Z" />
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M45,40 A9,9 0,1 1,44.9 40 Z M30,65 Q31,55 45,55 Q59,55 60,65 Z M65,46 L77,46 L77,50 L65,50 Z M65,57 L77,57 L77,61 L65,61 Z" />
 </vector>

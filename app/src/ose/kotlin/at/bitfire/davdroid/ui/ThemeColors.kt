@@ -11,9 +11,9 @@ import androidx.compose.ui.graphics.Color
 @Suppress("MemberVisibilityCanBePrivate")
 object M3ColorScheme {
 
-    // ── Brand palette sampled from the IT Squad website wordmark ────────
-    // Cyan  #27AAE1  →  primary   (IT mark, buttons, active indicators)
-    // Green #8CC641  →  secondary (SQUAD wordmark, accent, FABs)
+    // ── App palette ─────────────────────────────────────────────────────
+    // Cyan  #27AAE1  →  primary   (buttons, active indicators)
+    // Green #8CC641  →  secondary (accent, FABs)
     // Navy  #2F5577  →  tertiary  (top bars, containers, depth)
 
     // ── Light scheme ────────────────────────────────────────────────────

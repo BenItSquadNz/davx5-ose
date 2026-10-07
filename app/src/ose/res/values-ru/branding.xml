@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title_address_book">Адресная книга ITsquad</string>
+  <string name="account_list_welcome">Добро пожаловать в ITsquad!</string>
+  <string name="sync_error_permissions">Разрешения ITsquad</string>
+</resources>

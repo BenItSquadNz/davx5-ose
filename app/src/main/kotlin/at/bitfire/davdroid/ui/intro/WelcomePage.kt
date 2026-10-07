@@ -79,9 +79,9 @@ class WelcomePage: IntroPage() {
             ) {
                 Spacer(modifier = Modifier.weight(0.8f))
 
-                // The same wordmark used on IT Squad's website.
+                // The app wordmark supplied by the active resource set.
                 Image(
-                    painter = painterResource(R.drawable.itsquad_wordmark),
+                    painter = painterResource(R.drawable.brand_wordmark),
                     contentDescription = null,
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
@@ -183,7 +183,7 @@ class WelcomePage: IntroPage() {
                 ) {
                     // Logo on the left
                     Image(
-                        painter = painterResource(R.drawable.itsquad_wordmark),
+                        painter = painterResource(R.drawable.brand_wordmark),
                         contentDescription = null,
                         contentScale = ContentScale.Fit,
                         modifier = Modifier

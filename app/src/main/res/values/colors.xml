@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Exact opaque colours sampled from the IT Squad website wordmark. -->
+    <!-- App palette used for native Android resources. -->
     <color name="primaryColor">#27AAE1</color>
     <color name="primaryLightColor">#8CC641</color>
     <color name="primaryDarkColor">#2F5577</color>    <!-- navy: backgrounds, depth -->

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title_address_book">Sổ địa chỉ của ITsquad</string>
+  <string name="sync_error_permissions">Quyền của ITsquad</string>
+</resources>

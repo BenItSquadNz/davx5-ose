@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!--common strings-->
   <string name="account_invalid">帳號（已）不存在</string>
-  <string name="account_title_address_book">ITsquad 通訊錄</string>
+  <string name="account_title_address_book">Contact Sync 通訊錄</string>
   <string name="account_prefs_use_app">別在這裡更改帳戶！請直接使用應用程式管理帳戶。</string>
   <string name="dialog_delete">刪除</string>
   <string name="dialog_remove">移除</string>
@@ -124,7 +124,7 @@
   <string name="navigation_drawer_support_project">支持此項目</string>
   <string name="navigation_drawer_contribute">如何貢獻</string>
   <string name="navigation_drawer_privacy_policy">隱私權政策</string>
-  <string name="account_list_welcome">歡迎使用 ITsquad！</string>
+  <string name="account_list_welcome">歡迎使用 Contact Sync！</string>
   <string name="account_list_empty">連線到您的伺服器，並保持行事曆與聯絡人同步。</string>
   <string name="accounts_sync_all">同步所有帳戶</string>
   <!--Sync warnings-->
@@ -451,7 +451,7 @@
   <string name="webdav_notification_upload">正在上傳檔案至 WebDAV</string>
   <string name="webdav_provider_root_title">WebDAV 掛載</string>
   <!--sync-->
-  <string name="sync_error_permissions">ITsquad 權限</string>
+  <string name="sync_error_permissions">Contact Sync 權限</string>
   <string name="sync_error_permissions_text">需要額外的權限</string>
   <string name="sync_error_tasks_too_old">%s過舊</string>
   <string name="sync_error_tasks_required_version">最低需求版本：%1$s</string>

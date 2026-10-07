@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_title_address_book">ITsquad 通讯录</string>
+    <string name="account_list_welcome">欢迎来到 ITsquad！</string>
+  <string name="sync_error_permissions">ITsquad 权限</string>
+</resources>

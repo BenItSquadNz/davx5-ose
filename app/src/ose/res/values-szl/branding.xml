@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="account_title_address_book">Ksiōnżka adresowo ITsquad</string>
+  <string name="navigation_drawer_about">Ô ITsquad / Licyncyjo</string>
+  <string name="sync_error_permissions">Uprawniynia ITsquad</string>
+</resources>

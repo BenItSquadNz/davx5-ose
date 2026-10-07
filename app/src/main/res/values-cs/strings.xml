@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!--common strings-->
   <string name="account_invalid">Účet (už) neexistuje</string>
-  <string name="account_title_address_book">ITsquad adresář kontaktů</string>
+  <string name="account_title_address_book">Contact Sync adresář kontaktů</string>
   <string name="dialog_delete">Odstranit</string>
   <string name="dialog_remove">Odebrat</string>
   <string name="dialog_deny">Storno</string>
@@ -394,7 +394,7 @@
   <string name="webdav_notification_upload">Nahrává se WebDAV soubor</string>
   <string name="webdav_provider_root_title">WebDAV připojení</string>
   <!--sync-->
-  <string name="sync_error_permissions">ITsquad oprávnění</string>
+  <string name="sync_error_permissions">Contact Sync oprávnění</string>
   <string name="sync_error_permissions_text">Vyžadována dodatečná oprávnění</string>
   <string name="sync_error_tasks_too_old">Příliš stará verze %s</string>
   <string name="sync_error_tasks_required_version">Nejnižší požadovaná verze: %1$s</string>
