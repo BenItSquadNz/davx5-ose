@@ -16,7 +16,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "nz.itsquad.squadsync"
+        applicationId = "nz.itsquad.condex"
 
         versionCode = 405090008
         versionName = "4.5.9-rc.6"

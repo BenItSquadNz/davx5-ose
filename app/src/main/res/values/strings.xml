@@ -8,8 +8,8 @@
     <string name="app_name" translatable="false">Contact Sync</string>
 
     <string name="account_invalid">Account does not exist (anymore)</string>
-    <string name="account_type" translatable="false">nz.itsquad.squadsync</string>
-    <string name="account_type_address_book" translatable="false">nz.itsquad.squadsync.address_book</string>
+    <string name="account_type" translatable="false">nz.itsquad.condex</string>
+    <string name="account_type_address_book" translatable="false">nz.itsquad.condex.address_book</string>
     <string name="account_title_address_book">Contact Sync address book</string>
     <string name="account_prefs_use_app">Don\'t change the account here! Directly use the app to manage accounts instead.</string>
     <string name="dialog_delete">Delete</string>
@@ -458,7 +458,7 @@
     <string name="collection_url">Address (URL)</string>
 
     <!-- debugging and DebugInfoActivity -->
-    <string name="authority_debug_provider" translatable="false">nz.itsquad.squadsync.debug</string>
+    <string name="authority_debug_provider" translatable="false">nz.itsquad.condex.debug</string>
     <string name="debug_info_title">Debug info</string>
     <string name="debug_info_archive_caption">ZIP archive</string>
     <string name="debug_info_archive_subtitle">Contains debug info and logs</string>
@@ -496,7 +496,7 @@
     <string name="exception_show_details">Show details</string>
 
     <!-- WebDAV accounts -->
-    <string name="webdav_authority" translatable="false">nz.itsquad.squadsync.webdav</string>
+    <string name="webdav_authority" translatable="false">nz.itsquad.condex.webdav</string>
     <string name="webdav_mounts_title">WebDAV mounts</string>
     <string name="webdav_mounts_quota_used_available">Quota used: %1$s / available: %2$s</string>
     <string name="webdav_mounts_share_content">Share content</string>
